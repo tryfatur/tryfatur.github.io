@@ -1,185 +1,527 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" content="#282828" />
-		<meta property="og:description" content="Laman ini adalah laman profil Try Fathur Rachman">
-		<meta property="og:url" content="https://tryfatur.github.io">
-		<meta property="og:title" content="Profil: Try Fathur Rachman">
-		<title>Profil: Try Fathur Rachman</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-		<style type="text/css">
-			@import 'https://fonts.googleapis.com/css?family=Jaldi';
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Fathur Rachman - Personal Website</title>
 
-			body {
-				background-color: #282828;
-				margin-top: 70px;
-				color: #fff;
-				font-family: 'Jaldi', serif;
-				padding-bottom: 30px;
-			}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-			.avatar {
-				vertical-align: middle;
-				width: 250px;
-				height: 250px;
-				border-radius: 50%;
-			}
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
-			a {
-				color: #ffffff;
-			}
+    <style>
+        /* Custom Styles */
+        :root {
+            /* New Color Palette */
+            --c-white: #FFFFFF;
+            --c-dark-blue: #00171F;
+            --c-mid-blue-1: #003459;
+            --c-mid-blue-2: #007EA7;
+            --c-light-blue: #00A8E8;
 
-			a:hover, a:visited {
-				text-decoration: none;
-				color: #ffffff;
-			}
+            /* Light Theme */
+            --primary-color-light: var(--c-mid-blue-2);   /* #007EA7 */
+            --secondary-color-light: var(--c-mid-blue-1); /* #003459 */
+            --background-color-light: var(--c-white);      /* #FFFFFF */
+            --text-color-light: var(--c-dark-blue);      /* #00171F */
+            --card-bg-light: var(--c-white);           /* #FFFFFF */
+            
+            /* Dark Theme */
+            --primary-color-dark: var(--c-light-blue);    /* #00A8E8 */
+            --secondary-color-dark: var(--c-mid-blue-2);  /* #007EA7 */
+            --background-color-dark: var(--c-dark-blue);     /* #00171F */
+            --text-color-dark: var(--c-white);         /* #FFFFFF */
+            --card-bg-dark: var(--c-mid-blue-1);      /* #003459 */
+        }
 
-			.col-md-6 > a > i {
-				padding: 5px;
-			}
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-			.col-md-6 > a:hover > .fa-facebook,
-			.col-md-6 > a:hover > .fa-linkedin,
-			.col-md-6 > a:hover > .fa-github,
-			.col-md-6 > a:hover > .fa-instagram,
-			.col-md-6 > a:hover > .fa-wordpress,
-			.col-md-6 > a:hover > .fa-phone {
-				border-radius: 2px;
-			}
+        [data-bs-theme="light"] {
+            --bs-primary: var(--primary-color-light);
+            --bs-secondary: var(--secondary-color-light);
+            --bs-body-bg: var(--background-color-light);
+            --bs-body-color: var(--text-color-light);
+            --bs-card-bg: var(--card-bg-light);
+            --bs-tertiary-bg: #f8f9fa; /* Keep a light grey for hero for contrast */
+        }
 
-			.col-md-6 > a:hover > .fa-facebook {
-				background-color: #3B5998;
-			}
+        [data-bs-theme="dark"] {
+            --bs-primary: var(--primary-color-dark);
+            --bs-secondary: var(--secondary-color-dark);
+            --bs-body-bg: var(--background-color-dark);
+            --bs-body-color: var(--text-color-dark);
+            --bs-card-bg: var(--card-bg-dark);
+            --bs-tertiary-bg: #002635; /* A slightly lighter shade of the background for hero */
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
 
-			.col-md-6 > a:hover > .fa-linkedin {
-				background-color: #0077B5;
-			}
+        .hero {
+            padding: 6rem 0;
+        }
 
-			.col-md-6 > a:hover > .fa-github {
-				background-color: #fff;
-				color: #323131;
-			}
+        .hero h1 {
+            font-weight: 700;
+        }
 
-			.col-md-6 > a:hover > .fa-instagram {
-				background-color: #B43BAD;
-			}
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 0;
+            list-style: none;
+        }
 
-			.col-md-6 > a:hover > .fa-wordpress {
-				background-color: #00A0D2;
-			}
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--bs-primary);
+            left: 20px;
+            margin-left: -1.5px;
+        }
 
-			.col-md-6 > a:hover > .fa-phone {
-				background-color: #C51407;
-			}
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
 
-			.span-h3 {
-				font-size: 25px;
-			}
+        .timeline-item:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
 
-			.modal-body {
-				color: #000;
-			}
+        .timeline-panel {
+            width: calc(100% - 75px);
+            float: right;
+            border: 1px solid #dee2e6;
+            border-radius: .375rem;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-bs-theme="dark"] .timeline-panel {
+             border-color: var(--c-mid-blue-2);
+        }
 
-			.btn, .modal-content {
-				border-radius: 0px;
-			}
+        .timeline-badge {
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 0px;
+            z-index: 100;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card {
+            transition: transform 0.2s;
+            border: 1px solid rgba(0,0,0,.125);
+        }
+        [data-bs-theme="dark"] .card {
+            border-color: var(--c-mid-blue-2);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
 
-			.typed-cursor{
-				opacity: 1;
-				-webkit-animation: blink 0.7s infinite;
-				-moz-animation: blink 0.7s infinite;
-				animation: blink 0.7s infinite;
-			}
-			@keyframes blink{
-				0% { opacity:1; }
-				50% { opacity:0; }
-				100% { opacity:1; }
-			}
-			@-webkit-keyframes blink{
-				0% { opacity:1; }
-				50% { opacity:0; }
-				100% { opacity:1; }
-			}
-			@-moz-keyframes blink{
-				0% { opacity:1; }
-				50% { opacity:0; }
-				100% { opacity:1; }
-			}
-		</style>
-	</head>
-	<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Try Fathur Rachman</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <button id="theme-toggler" class="btn btn-outline-primary">
+                            <i class="bi bi-moon-stars-fill"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-		<div class="text-center">
-			<img src="https://avatars.githubusercontent.com/u/6901953?v=4" alt="" class="avatar">
-			<h1>Hai !</h1>
+    <!-- Hero Section -->
+    <header class="hero bg-body-tertiary text-center">
+        <div class="container">
+            <h1 class="display-4">Try Fathur Rachman</h1>
+            <p class="lead text-muted">Digital Transformation & Public Sector Innovation Specialist</p>
+            <p class="mt-4">Passionate and impact-oriented with a strong track record in leading digital transformation initiatives across government and development sectors.</p>
+        </div>
+    </header>
 
-			<span class="span-h3">
-				Saya <span class="span-h3" id="typed-place"></span>
-			</span>
+    <main class="container py-5">
+        <!-- About Section -->
+        <section id="about" class="my-5">
+            <h2 class="section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p>I work at the intersection of public sector innovation, data systems, and strategic digital policy. Over the years, I’ve led projects ranging from national data platforms to health system reforms, always with a focus on bringing people together: across teams, ministries, and global partners to make things happen. I draw on data insights, design thinking, and agile ways of working to create lasting change in complex environments where many voices need to be heard.</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                 <h3 class="text-center mb-4">Key Skills</h3>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-pc-display-horizontal fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Digital Government & GovTech Strategy</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-bar-chart-fill fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Spatial & Statistical Data Governance</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-kanban fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Project & Product Management</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-people fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Stakeholder Engagement & Policy Research</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-graph-up-arrow fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Data-driven Planning, Monitoring, and Evaluation</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                     <div class="card h-100 shadow-sm">
+                         <div class="card-body text-center">
+                            <i class="bi bi-lightbulb fs-2 text-primary"></i>
+                            <h5 class="card-title mt-3">Innovation & Emerging Technologies</h5>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
 
-			<div id="typed-strings">
-				<p>seorang <em>Product Manager.</em></p>
-				<p>seorang <em>Certified Data Management Professional.</em></p>
-				<p>seorang <em>Digital Transformator.</em></p>
-				<p>Try Fathur Rachman.</p>
-			</div>
+        <!-- Experience Section -->
+        <section id="experience" class="my-5">
+            <hr>
+            <h2 class="section-title">Work Experience</h2>
+            <ul class="timeline">
+                <!-- AMANA Solution -->
+                <li class="timeline-item">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Senior Digital Transformation Associate</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> AMANA Solution, DKI Jakarta | <i class="bi bi-calendar-event"></i> 04/2025 - Present</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Led national-level digital government transformation projects, collaborating with strategic ministries post-establishment of INA Digital.</li>
+                                <li>Oversaw project delivery across multiple sectors (e.g., planning, public services), ensuring alignment with Presidential Decree on Digital Transformation.</li>
+                                <li>Facilitated multi-stakeholder workshops and change management to scale transformation initiatives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Think Policy Indonesia -->
+                 <li class="timeline-item">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Senior Associate Advisory</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> Think Policy Indonesia, DKI Jakarta | <i class="bi bi-calendar-event"></i> 11/2024 - 03/2025</small></p>
+                        </div>
+                        <div class="timeline-body">
+                           <ul>
+                                <li>Co-developed the <a href="https://kms.kemkes.go.id/pengetahuan/detail/685cbb2f88f3952b7b1b495a">SatuSehat SDMK 2024-2029 roadmap</a>, enhancing digital HR data integration for the Ministry of Health.</li>
+                                <li>Conducted organizational assessment and redesign for MoH's Digital Transformation Unit as part of Health Transformation 2.0.</li>
+                                <li>Contributed to cross-sectoral digital governance reform supporting INA Digital initiative.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Collapsible items start here -->
+                <!-- Trikintech -->
+                 <li class="timeline-item collapse more-experience-items">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Project Manager</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> Trikintech, Hybrid | <i class="bi bi-calendar-event"></i> 02/2025 - Present</small></p>
+                        </div>
+                        <div class="timeline-body">
+                           <ul>
+                                <li>Directed spatial data management system implementation for East Java Province, enhancing strategic planning and interagency coordination.</li>
+                                <li>Led deployment of Spatial Data Portal integrated with geospatial datasets across government organizations.</li>
+                                <li>Ensured project compliance with JIGN standards and One Map Policy.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                
+                <!-- Jabar Digital Service - Tribe Leader -->
+                <li class="timeline-item collapse more-experience-items">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Tribe Leader</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> Jabar Digital Service, Bandung City | <i class="bi bi-calendar-event"></i> 01/2024 - 12/2024</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Spearheaded initiatives promoting data-driven governance across West Java, winning <a href="https://my.idc.com/getdoc.jsp?containerId=prAP52664224"> IDC's "Best in Future of Enterprise Intelligence."</a></li>
+                                <li>Successfully scaled Jabar Form as the national platform for health data collection in collaboration with MoH (Free Medical Check-Up program).</li>
+                                <li><a href="https://www.jabarprov.go.id/berita/pemda-provinsi-jawa-barat-borong-tiga-penghargaan-16187">Led team in securing Gold Medal in Bhumandala 2024 for excellence in geospatial infrastructure (JIGN). </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                 <!-- Jabar Digital Service - Senior Product Manager -->
+                <li class="timeline-item collapse more-experience-items">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Senior Product Manager</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> Jabar Digital Service, Bandung City | <i class="bi bi-calendar-event"></i> 01/2022 - 12/2023</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Piloted national proof-of-concept for X-Road data exchange, enabling secure interagency services—first use case in Indonesia.</li>
+                                <li>Managed design and rollout of integrated Open Data, Satu Data, and One Map platforms replicated by 25+ regional governments.</li>
+                                <li><a href="https://www.jabarprov.go.id/berita/jawa-barat-raih-dua-penghargaan-bhumandala-award-2022-7740">Won Bhumandala Gold Medal (2022)</a> and placed <a href="https://www.instagram.com/p/Cjz2VJppQPi/"> Top 5 in IdenTIK 2022 for public innovation.</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- The World Bank -->
+                <li class="timeline-item collapse more-experience-items">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Digital Transformation Specialist</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> The World Bank Group, DKI Jakarta | <i class="bi bi-calendar-event"></i> 04/2021 - 04/2022</small></p>
+                        </div>
+                        <div class="timeline-body">
+                           <ul>
+                                <li>Supported digital reform of PRODESKEL and SISKEUDES platforms for village-level data and fiscal management.</li>
+                                <li>Delivered data quality and system efficiency recommendations adopted by Kemendagri.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Bandung City ICT Agency -->
+                 <li class="timeline-item collapse more-experience-items">
+                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Business Analyst</h4>
+                            <p><small class="text-muted"><i class="bi bi-building"></i> Bandung City ICT Agency, Bandung City | <i class="bi bi-calendar-event"></i> 05/2017 - 12/2021</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                               <li>Co-managed Bandung Datathon (2018-2021) fostering civic tech and public data reuse through open innovation events.</li>
+                               <li>Developed and maintained Bandung's Open Data Portal, increasing data reuse by local developers and CSOs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="experience-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target=".more-experience-items" aria-expanded="false">
+                    <i class="bi bi-arrow-down-square"></i> Show More
+                </button>
+            </div>
+        </section>
 
-			<span id="typed"></span>
-			
-			<!-- <div class="text-center text-muted">
-				<i>Open Data Analyst @ Pemerintah Kota Bandung</i>
-			</div> -->
+        <!-- Education Section -->
+        <section id="education" class="my-5">
+            <hr>
+            <h2 class="section-title">Education</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
+                            <h4 class="card-title mt-3">Informatics Engineering (S.Kom)</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Bachelor &bull; Universitas Komputer Indonesia, Bandung</h6>
+                            <p class="card-text">Class of 2011, GPA 3.27</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mx-auto">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
+                            <h4 class="card-title mt-3">Development Studies (MSP)</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Master &bull; Institut Teknologi Bandung, Bandung</h6>
+                            <p class="card-text">Class of 2025, GPA -</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-			<hr style="width: 85px;" />
+        <!-- Certifications Section -->
+        <section id="certifications" class="my-5">
+            <hr>
+            <h2 class="section-title">Professional Certifications</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong><i class="bi bi-patch-check-fill"></i> <a href="https://eu.credential.net/dd42922b-e6c0-4452-8a85-81bcc7fed8f2" target="_blank">Certified Data Management Professional (CDMP)</a></strong></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Issued by: DAMA International</h6>
+                            <p class="card-text">A globally recognized certification covering core areas of data management such as data governance, architecture, quality, and metadata.</p>
+                            <p class="card-text"><small class="text-muted">Valid Until: December 2025</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong><i class="bi bi-patch-check-fill"></i> <a href="https://credsverse.com/credentials/6b2d9610-5bc2-4563-9d82-269949a20807?preview=1" target="_blank">Certified Design Thinking Public Policy Enabler</a></strong></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Issued by: Design Thinking Academy Indonesia</h6>
+                            <p class="card-text">Equips professionals with practical skills to apply human-centered design methods for policy innovation and problem-solving in government or development settings.</p>
+                            <p class="card-text"><small class="text-muted">Valid Until: January 2027</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="my-5 text-center">
+            <hr>
+             <h2 class="section-title">Get In Touch</h2>
+             <p>Feel free to reach out for collaborations or just a friendly chat.</p>
+             <a href="mailto:tryfatur@gmail.com" class="btn btn-primary btn-lg mx-2"><i class="bi bi-envelope-fill"></i> Email Me</a>
+             <a href="https://linkedin.com/in/tryfatur" target="_blank" class="btn btn-secondary btn-lg mx-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        </section>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3"></div>
-					<div class="col-md-6">
-						<a href="https://id.linkedin.com/in/tryfatur" target="_blank">
-							<i class="fa fa-fw fa-linkedin fa-2x"></i>
-						</a>
-						<a href="https://github.com/tryfatur" target="_blank">
-							<i class="fa fa-fw fa-github fa-2x"></i>
-						</a>
-						<a data-toggle="modal" href='#contact'>
-							<i class="fa fa-fw fa-phone fa-2x"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
+    </main>
 
-		<div class="modal fade" id="contact">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body text-center">
-						<h3>Jadi, Anda tertarik dengan profil saya?</h3>
-						<h4>Cukup email saya di tryfatur[at]gmail[dot]com</h4>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">
-							<i class="fa fa-fw fa-times-circle fa-1x"></i> Tutup
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- Footer -->
+    <footer class="bg-body-tertiary text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; <span id="current-year"></span> Try Fathur Rachman. All Rights Reserved.</p>
+            <p class="mb-0">
+                <i class="bi bi-telephone-fill"></i> (+62) 857-2028-5489 | 
+                <i class="bi bi-geo-alt-fill"></i> Bandung, Indonesia
+            </p>
+        </div>
+    </footer>
 
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
-		<script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.4/typed.min.js"></script>
-		<script>
-			$(function(){
-				$("#typed-place").typed({
-					stringsElement: $('#typed-strings'),
-					typeSpeed: 75,
-					cursorChar: "_"
-				});
-			});
-		</script>
-	</body>
+    <script>
+        // JavaScript for Theme Toggler and other functionalities
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggler = document.getElementById('theme-toggler');
+            const htmlElement = document.documentElement;
+            const moonIcon = 'bi-moon-stars-fill';
+            const sunIcon = 'bi-sun-fill';
+
+            // Function to set theme
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-bs-theme', theme);
+                const icon = theme === 'dark' ? sunIcon : moonIcon;
+                themeToggler.querySelector('i').className = `bi ${icon}`;
+            };
+
+            // Check for saved theme in localStorage
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+
+            // Theme toggler event listener
+            themeToggler.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    // Check if href is more than just a '#' to prevent errors
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Experience toggle button text change
+            const experienceToggleButton = document.getElementById('experience-toggle-btn');
+            const collapsibleItems = document.querySelectorAll('.more-experience-items');
+            
+            if(experienceToggleButton && collapsibleItems.length > 0) {
+                // We listen to the event on the first item, which is enough to update the button
+                collapsibleItems[0].addEventListener('show.bs.collapse', () => {
+                    experienceToggleButton.innerHTML = '<i class="bi bi-arrow-up-square"></i> Show Less';
+                });
+                collapsibleItems[0].addEventListener('hide.bs.collapse', () => {
+                    experienceToggleButton.innerHTML = '<i class="bi bi-arrow-down-square"></i> Show More';
+                });
+            }
+        });
+    </script>
+</body>
 </html>
