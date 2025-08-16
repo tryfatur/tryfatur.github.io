@@ -3,174 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try Fathur Rachman - Personal Website</title>
-
+    <title>Try Fathur Rachman | Digital Transformation Professional</title>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Custom CSS -->
     <style>
-        /* Custom Styles */
         :root {
-            /* New Color Palette */
-            --c-white: #FFFFFF;
-            --c-dark-blue: #00171F;
-            --c-mid-blue-1: #003459;
-            --c-mid-blue-2: #007EA7;
-            --c-light-blue: #00A8E8;
-
-            /* Light Theme */
-            --primary-color-light: var(--c-mid-blue-2);   /* #007EA7 */
-            --secondary-color-light: var(--c-mid-blue-1); /* #003459 */
-            --background-color-light: var(--c-white);      /* #FFFFFF */
-            --text-color-light: var(--c-dark-blue);      /* #00171F */
-            --card-bg-light: var(--c-white);           /* #FFFFFF */
+            --primary-color: #007EA7;
+            --secondary-color: #00A8E8;
+            --dark-blue: #003459;
+            --darkest-blue: #00171F;
+            --white: #FFFFFF;
             
-            /* Dark Theme */
-            --primary-color-dark: var(--c-light-blue);    /* #00A8E8 */
-            --secondary-color-dark: var(--c-mid-blue-2);  /* #007EA7 */
-            --background-color-dark: var(--c-dark-blue);     /* #00171F */
-            --text-color-dark: var(--c-white);         /* #FFFFFF */
-            --card-bg-dark: var(--c-mid-blue-1);      /* #003459 */
+            --text-light: #00171F;
+            --bg-light: #FFFFFF;
+            --card-bg-light: #f8f9fa;
+
+            --text-dark: #FFFFFF;
+            --bg-dark: #00171F;
+            --card-bg-dark: #003459;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Lora', serif;
             transition: background-color 0.3s, color 0.3s;
         }
 
         [data-bs-theme="light"] {
-            --bs-primary: var(--primary-color-light);
-            --bs-secondary: var(--secondary-color-light);
-            --bs-body-bg: var(--background-color-light);
-            --bs-body-color: var(--text-color-light);
-            --bs-card-bg: var(--card-bg-light);
-            --bs-tertiary-bg: #f8f9fa; /* Keep a light grey for hero for contrast */
+            color: var(--text-light);
+            background-color: var(--bg-light);
         }
 
         [data-bs-theme="dark"] {
-            --bs-primary: var(--primary-color-dark);
-            --bs-secondary: var(--secondary-color-dark);
-            --bs-body-bg: var(--background-color-dark);
-            --bs-body-color: var(--text-color-dark);
-            --bs-card-bg: var(--card-bg-dark);
-            --bs-tertiary-bg: #002635; /* A slightly lighter shade of the background for hero */
+            color: var(--text-dark);
+            background-color: var(--bg-dark);
+        }
+
+        .navbar {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        [data-bs-theme="dark"] .navbar {
+             background-color: rgba(0, 23, 31, 0.7);
+        }
+
+        [data-bs-theme="light"] .navbar {
+             background-color: rgba(255, 255, 255, 0.7);
         }
 
         .hero {
-            padding: 6rem 0;
-        }
-
-        .hero h1 {
-            font-weight: 700;
-        }
-
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        .timeline {
-            position: relative;
-            padding: 0;
-            list-style: none;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--bs-primary);
-            left: 20px;
-            margin-left: -1.5px;
-        }
-
-        .timeline-item {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-item:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .timeline-panel {
-            width: calc(100% - 75px);
-            float: right;
-            border: 1px solid #dee2e6;
-            border-radius: .375rem;
-            padding: 1.5rem;
-            position: relative;
-            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        [data-bs-theme="dark"] .timeline-panel {
-             border-color: var(--c-mid-blue-2);
-        }
-
-        .timeline-badge {
-            color: #fff;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            font-size: 1.4em;
-            text-align: center;
-            position: absolute;
-            top: 16px;
-            left: 0px;
-            z-index: 100;
-            border-radius: 50%;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Lora', serif;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        
+        [data-bs-theme="dark"] .hero h1 {
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+        }
+
+        [data-bs-theme="dark"] .section-title {
+            color: var(--secondary-color);
         }
         
         .card {
-            transition: transform 0.2s;
-            border: 1px solid rgba(0,0,0,.125);
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        [data-bs-theme="light"] .card {
+            background-color: var(--card-bg-light);
         }
         [data-bs-theme="dark"] .card {
-            border-color: var(--c-mid-blue-2);
+            background-color: var(--card-bg-dark);
         }
+
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        [data-bs-theme="dark"] .card:hover {
+            box-shadow: 0 4px 15px rgba(0,168,232,0.2);
+        }
+
+        .accordion-button {
+            font-weight: 600;
+        }
+        
+        .accordion-item {
+             border: 1px solid rgba(0,0,0,.125);
+        }
+        
+        [data-bs-theme="dark"] .accordion-item {
+             border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        [data-bs-theme="light"] .accordion-button:not(.collapsed) {
+            color: var(--darkest-blue);
+            background-color: rgba(0, 126, 167, 0.1);
+        }
+        
+        [data-bs-theme="dark"] .accordion-button:not(.collapsed) {
+            color: var(--white);
+            background-color: var(--primary-color);
+        }
+        
+        .client-logo {
+            max-height: 50px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        [data-bs-theme="dark"] .client-logo {
+            filter: grayscale(100%) invert(1);
+        }
+        [data-bs-theme="dark"] .client-logo:hover {
+            filter: grayscale(0%) invert(0);
+        }
+
+        .theme-switch {
+            cursor: pointer;
+        }
+
+        #about, #projects, #contact {
+            background-color: var(--card-bg-light);
+        }
+
+        [data-bs-theme="dark"] #about,
+        [data-bs-theme="dark"] #projects,
+        [data-bs-theme="dark"] #contact {
+            background-color: var(--card-bg-dark);
+        }
+
+        .btn-primary, .btn-primary:active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover, .btn-outline-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Try Fathur Rachman</a>
+            <a class="navbar-brand fw-bold" href="#">@tryfatur</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
                     <li class="nav-item ms-lg-3">
-                        <button id="theme-toggler" class="btn btn-outline-primary">
-                            <i class="bi bi-moon-stars-fill"></i>
-                        </button>
+                        <a class="nav-link theme-switch" id="theme-toggler">
+                            <i class="fa-solid fa-moon"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -178,258 +221,401 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero bg-body-tertiary text-center">
+    <header class="hero" id="home">
         <div class="container">
-            <h1 class="display-4">Try Fathur Rachman</h1>
-            <p class="lead text-muted">Digital Transformation & Public Sector Innovation Specialist</p>
-            <p class="mt-4">Passionate and impact-oriented with a strong track record in leading digital transformation initiatives across government and development sectors.</p>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-3">Try Fathur Rachman</h1>
+                    <p class="lead text-muted">9+ Years of Digital Transformation & Public Sector Innovation Specialist</p>
+                    <p class="lead my-4">
+                        Passionate and impact-oriented professional leading digital transformation in government and development sectors. Specialized in public sector innovation, spatial & statistical data systems, and strategic digital policy.
+                    </p>
+                    <!-- style="background-color: var(--primary-color); border-color: var(--primary-color);" -->
+                    <a href="#experience" class="btn btn-primary btn-lg">Explore My Work</a>
+                    <a href="https://wa.me/6285720285489" class="btn btn-outline-primary btn-lg"><i class="fa-solid fa-phone" style="color: var(--primary-color);"></i> Direct Call</a>
+                    <a href="mailto:tryfatur@gmail.com" class="btn btn-outline-primary btn-lg">Get In Touch</a>
+                </div>
+            </div>
         </div>
     </header>
-
-    <main class="container py-5">
-        <!-- About Section -->
-        <section id="about" class="my-5">
-            <h2 class="section-title">About Me</h2>
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <p>I work at the intersection of public sector innovation, data systems, and strategic digital policy. Over the years, I’ve led projects ranging from national data platforms to health system reforms, always with a focus on bringing people together: across teams, ministries, and global partners to make things happen. I draw on data insights, design thinking, and agile ways of working to create lasting change in complex environments where many voices need to be heard.</p>
-                </div>
-            </div>
-            <div class="row mt-5">
-                 <h3 class="text-center mb-4">Key Skills</h3>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-pc-display-horizontal fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Digital Government & GovTech Strategy</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-bar-chart-fill fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Spatial & Statistical Data Governance</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-kanban fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Project & Product Management</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-people fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Stakeholder Engagement & Policy Research</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-graph-up-arrow fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Data-driven Planning, Monitoring, and Evaluation</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 mb-3">
-                     <div class="card h-100 shadow-sm">
-                         <div class="card-body text-center">
-                            <i class="bi bi-lightbulb fs-2 text-primary"></i>
-                            <h5 class="card-title mt-3">Innovation & Emerging Technologies</h5>
-                         </div>
-                     </div>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="my-5">
-            <hr>
-            <h2 class="section-title">Work Experience</h2>
-            <ul class="timeline">
-                <!-- AMANA Solution -->
-                <li class="timeline-item">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Senior Digital Transformation Associate</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> AMANA Solution, DKI Jakarta | <i class="bi bi-calendar-event"></i> 04/2025 - Present</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Led national-level digital government transformation projects, collaborating with strategic ministries post-establishment of INA Digital.</li>
-                                <li>Oversaw project delivery across multiple sectors (e.g., planning, public services), ensuring alignment with Presidential Decree on Digital Transformation.</li>
-                                <li>Facilitated multi-stakeholder workshops and change management to scale transformation initiatives.</li>
-                            </ul>
+    
+    <main>
+        <!-- About / Skills Section -->
+        <section id="about" class="py-5">
+            <div class="container py-5">
+                <h2 class="text-center section-title">Core Competencies</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-building-columns fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Digital Government & GovTech Strategy</h5>
+                            </div>
                         </div>
                     </div>
-                </li>
-                <!-- Think Policy Indonesia -->
-                 <li class="timeline-item">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Senior Associate Advisory</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> Think Policy Indonesia, DKI Jakarta | <i class="bi bi-calendar-event"></i> 11/2024 - 03/2025</small></p>
-                        </div>
-                        <div class="timeline-body">
-                           <ul>
-                                <li>Co-developed the <a href="https://kms.kemkes.go.id/pengetahuan/detail/685cbb2f88f3952b7b1b495a">SatuSehat SDMK 2024-2029 roadmap</a>, enhancing digital HR data integration for the Ministry of Health.</li>
-                                <li>Conducted organizational assessment and redesign for MoH's Digital Transformation Unit as part of Health Transformation 2.0.</li>
-                                <li>Contributed to cross-sectoral digital governance reform supporting INA Digital initiative.</li>
-                            </ul>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-sitemap fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Spatial & Statistical Data Governance</h5>
+                            </div>
                         </div>
                     </div>
-                </li>
-                <!-- Collapsible items start here -->
-                <!-- Trikintech -->
-                 <li class="timeline-item collapse more-experience-items">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Project Manager</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> Trikintech, Hybrid | <i class="bi bi-calendar-event"></i> 02/2025 - Present</small></p>
-                        </div>
-                        <div class="timeline-body">
-                           <ul>
-                                <li>Directed spatial data management system implementation for East Java Province, enhancing strategic planning and interagency coordination.</li>
-                                <li>Led deployment of Spatial Data Portal integrated with geospatial datasets across government organizations.</li>
-                                <li>Ensured project compliance with JIGN standards and One Map Policy.</li>
-                            </ul>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-bars-progress fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Project & Product Management (Agile)</h5>
+                            </div>
                         </div>
                     </div>
-                </li>
-                
-                <!-- Jabar Digital Service - Tribe Leader -->
-                <li class="timeline-item collapse more-experience-items">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Tribe Leader</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> Jabar Digital Service, Bandung City | <i class="bi bi-calendar-event"></i> 01/2024 - 12/2024</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Spearheaded initiatives promoting data-driven governance across West Java, winning <a href="https://my.idc.com/getdoc.jsp?containerId=prAP52664224"> IDC's "Best in Future of Enterprise Intelligence."</a></li>
-                                <li>Successfully scaled Jabar Form as the national platform for health data collection in collaboration with MoH (Free Medical Check-Up program).</li>
-                                <li><a href="https://www.jabarprov.go.id/berita/pemda-provinsi-jawa-barat-borong-tiga-penghargaan-16187">Led team in securing Gold Medal in Bhumandala 2024 for excellence in geospatial infrastructure (JIGN). </a></li>
-                            </ul>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-users fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Stakeholder Engagement & Policy Research</h5>
+                            </div>
                         </div>
                     </div>
-                </li>
-                 <!-- Jabar Digital Service - Senior Product Manager -->
-                <li class="timeline-item collapse more-experience-items">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Senior Product Manager</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> Jabar Digital Service, Bandung City | <i class="bi bi-calendar-event"></i> 01/2022 - 12/2023</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                                <li>Piloted national proof-of-concept for X-Road data exchange, enabling secure interagency services—first use case in Indonesia.</li>
-                                <li>Managed design and rollout of integrated Open Data, Satu Data, and One Map platforms replicated by 25+ regional governments.</li>
-                                <li><a href="https://www.jabarprov.go.id/berita/jawa-barat-raih-dua-penghargaan-bhumandala-award-2022-7740">Won Bhumandala Gold Medal (2022)</a> and placed <a href="https://www.instagram.com/p/Cjz2VJppQPi/"> Top 5 in IdenTIK 2022 for public innovation.</a></li>
-                            </ul>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-chart-line fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Data-driven Planning, M&E</h5>
+                            </div>
                         </div>
                     </div>
-                </li>
-                <!-- The World Bank -->
-                <li class="timeline-item collapse more-experience-items">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Digital Transformation Specialist</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> The World Bank Group, DKI Jakarta | <i class="bi bi-calendar-event"></i> 04/2021 - 04/2022</small></p>
-                        </div>
-                        <div class="timeline-body">
-                           <ul>
-                                <li>Supported digital reform of PRODESKEL and SISKEUDES platforms for village-level data and fiscal management.</li>
-                                <li>Delivered data quality and system efficiency recommendations adopted by Kemendagri.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <!-- Bandung City ICT Agency -->
-                 <li class="timeline-item collapse more-experience-items">
-                    <div class="timeline-badge bg-primary"><i class="bi bi-briefcase-fill"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Business Analyst</h4>
-                            <p><small class="text-muted"><i class="bi bi-building"></i> Bandung City ICT Agency, Bandung City | <i class="bi bi-calendar-event"></i> 05/2017 - 12/2021</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <ul>
-                               <li>Co-managed Bandung Datathon (2018-2021) fostering civic tech and public data reuse through open innovation events.</li>
-                               <li>Developed and maintained Bandung's Open Data Portal, increasing data reuse by local developers and CSOs.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="text-center mt-4">
-                <button class="btn btn-primary" id="experience-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target=".more-experience-items" aria-expanded="false">
-                    <i class="bi bi-arrow-down-square"></i> Show More
-                </button>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="my-5">
-            <hr>
-            <h2 class="section-title">Education</h2>
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
-                            <h4 class="card-title mt-3">Informatics Engineering (S.Kom)</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Bachelor &bull; Universitas Komputer Indonesia, Bandung</h6>
-                            <p class="card-text">Class of 2011, GPA 3.27</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mx-auto">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
-                            <h4 class="card-title mt-3">Development Studies (MSP)</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Master &bull; Institut Teknologi Bandung, Bandung</h6>
-                            <p class="card-text">Class of 2025, GPA -</p>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-lightbulb fs-1" style="color: var(--primary-color);"></i>
+                                <h5 class="card-title mt-3">Innovation & Emerging Technologies</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="my-5">
-            <hr>
-            <h2 class="section-title">Professional Certifications</h2>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong><i class="bi bi-patch-check-fill"></i> <a href="https://eu.credential.net/dd42922b-e6c0-4452-8a85-81bcc7fed8f2" target="_blank">Certified Data Management Professional (CDMP)</a></strong></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Issued by: DAMA International</h6>
-                            <p class="card-text">A globally recognized certification covering core areas of data management such as data governance, architecture, quality, and metadata.</p>
-                            <p class="card-text"><small class="text-muted">Valid Until: December 2025</small></p>
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-5">
+            <div class="container py-5">
+                <h2 class="text-center section-title">Work Experience</h2>
+                <div class="accordion" id="workExperienceAccordion">
+
+                    <!-- IDEAS -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingIdeas">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdeas" aria-expanded="true" aria-controls="collapseIdeas">
+                                Chief Product Officer &bull; IDE Agency & Solutions (2025 - Present)
+                            </button>
+                        </h2>
+                        <div id="collapseIdeas" class="accordion-collapse collapse show" aria-labelledby="headingIdeas" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Directed spatial data management system implementation for East Java Province, enhancing strategic planning and interagency coordination.</li>
+                                    <li>Led deployment of Spatial Data Portal integrated with geospatial datasets across government organizations.</li>
+                                    <li>Ensured project compliance with JIGN standards and One Map Policy.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Trikintech -->
+                    <!-- <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingTrikintech">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTrikintech" aria-expanded="false" aria-controls="collapseTrikintech">
+                                Project Manager &bull; Trikintech (6 Month)
+                            </button>
+                        </h2>
+                        <div id="collapseTrikintech" class="accordion-collapse collapse" aria-labelledby="headingTrikintech" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Project Based</p>
+                                <p><strong>Contribution Period</strong>: Nov, 2024 - March, 2025</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <ul>
+                                    <li>Directed spatial data management system implementation for East Java Province, enhancing strategic planning and interagency coordination.</li>
+                                    <li>Led deployment of Spatial Data Portal integrated with geospatial datasets across government organizations.</li>
+                                    <li>Ensured project compliance with JIGN standards and One Map Policy.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- AMANA Solution -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingAmana">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAmana" aria-expanded="false" aria-controls="collapseAmana">
+                                Senior Digital Transformation Associate &bull; AMANA Solution (2025)
+                            </button>
+                        </h2>
+                        <div id="collapseAmana" class="accordion-collapse collapse" aria-labelledby="headingAmana" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Full Time</p>
+                                <p><strong>Contribution Period</strong>: April 2025 - August 2025</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <ul>
+                                    <li>Led national-level digital government transformation projects, collaborating with strategic ministries post-establishment of INA Digital.</li>
+                                    <li>Oversaw project delivery across multiple sectors (e.g., planning, public services), ensuring alignment with Presidential Decree on Digital Transformation.</li>
+                                    <li>Facilitated multi-stakeholder workshops and change management to scale transformation initiatives.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Think Policy Indonesia -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingThinkPolicy">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThinkPolicy" aria-expanded="false" aria-controls="collapseThinkPolicy">
+                                Senior Associate Advisory &bull; Think Policy Indonesia (2024-2025)
+                            </button>
+                        </h2>
+                        <div id="collapseThinkPolicy" class="accordion-collapse collapse" aria-labelledby="headingThinkPolicy" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Full Time</p>
+                                <p><strong>Contribution Period</strong>: Nov 2024 - March 2025</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <ul>
+                                    <li>Co-developed the <a href="https://kms.kemkes.go.id/pengetahuan/detail/685cbb2f88f3952b7b1b495a">SatuSehat SDMK 2024-2029 roadmap</a>, enhancing digital HR data integration for the Ministry of Health.</li>
+                                    <li>Conducted organizational assessment and redesign for MoH's Digital Transformation Unit as part of Health Transformation 2.0.</li>
+                                    <li>Contributed to cross-sectoral digital governance reform supporting INA Digital initiative.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jabar Digital Service -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingJDS">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJDS" aria-expanded="false" aria-controls="collapseJDS">
+                                Tribe Leader & Senior Product Manager &bull; Jabar Digital Service (2022-2024)
+                            </button>
+                        </h2>
+                        <div id="collapseJDS" class="accordion-collapse collapse" aria-labelledby="headingJDS" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Full Time</p>
+                                <p><strong>Contribution Period</strong>: Jan 2022 - Dec 2024</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <strong>As Tribe Leader (Jan 2024 - Dec 2024):</strong>
+                                <ul>
+                                    <li>Spearheaded initiatives promoting data-driven governance across West Java, winning <a href="https://my.idc.com/getdoc.jsp?containerId=prAP52664224"> IDC's "Best in Future of Enterprise Intelligence."</a></li>
+                                    <li>Successfully scaled Jabar Form as the national platform for health data collection in collaboration with MoH (Free Medical Check-Up program).</li>
+                                    <li><a href="https://www.jabarprov.go.id/berita/pemda-provinsi-jawa-barat-borong-tiga-penghargaan-16187">Led team in securing Gold Medal in Bhumandala 2024 for excellence in geospatial infrastructure (JIGN). </a></li>
+                                </ul>
+                                <strong>As Senior Product Manager (Jan 2022 - Dec 2023):</strong>
+                                <ul>
+                                    <li>Piloted national proof-of-concept for X-Road data exchange, enabling secure interagency services—first use case in Indonesia.</li>
+                                    <li>Managed design and rollout of integrated Open Data, Satu Data, and One Map platforms replicated by 25+ regional governments.</li>
+                                    <li><a href="https://www.jabarprov.go.id/berita/jawa-barat-raih-dua-penghargaan-bhumandala-award-2022-7740">Won Bhumandala Gold Medal (2022)</a> and placed <a href="https://www.instagram.com/p/Cjz2VJppQPi/"> Top 5 in IdenTIK 2022 for public innovation.</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <!-- The World Bank Group -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingWorldBank">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWorldBank" aria-expanded="false" aria-controls="collapseWorldBank">
+                                Digital Transformation Specialist &bull; The World Bank Group (2021-2022)
+                            </button>
+                        </h2>
+                        <div id="collapseWorldBank" class="accordion-collapse collapse" aria-labelledby="headingWorldBank" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Short Term Consultant</p>
+                                <p><strong>Contribution Period</strong>: April 2021 - April 2022</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <ul>
+                                    <li>Supported digital reform of PRODESKEL and SISKEUDES platforms for village-level data and fiscal management.</li>
+                                    <li>Delivered data quality and system efficiency recommendations adopted by Kemendagri.</li>
+                                    <li>Provided technical input to local government innovation policy and modernization framework.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bandung City ICT Agency -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingBandungICT">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBandungICT" aria-expanded="false" aria-controls="collapseBandungICT">
+                                Business Analyst & Data Analyst &bull; Bandung City ICT Agency (2016-2021)
+                            </button>
+                        </h2>
+                        <div id="collapseBandungICT" class="accordion-collapse collapse" aria-labelledby="headingBandungICT" data-bs-parent="#workExperienceAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Employment Type: </strong>Full Time</p>
+                                <p><strong>Contribution Period</strong>: Sep 2016 - Dec 2021</p>
+                                <p><strong>Key Milestones:</strong></p>
+                                <strong>As Business Analyst (May 2017 - Dec 2021):</strong>
+                                <ul>
+                                    <li>Co-managed Bandung Datathon (2018-2021) fostering civic tech and public data reuse through open innovation events.</li>
+                                    <li>Developed and maintained Bandung's Open Data Portal, increasing data reuse by local developers and CSOs.</li>
+                                    <li>Initiated cross-sector collaboration models for smart city analytics and digital services.</li>
+                                </ul>
+                                <strong>As Data Analyst (Sep 2016 - April 2017):</strong>
+                                <ul>
+                                    <li>Designed an education dashboard for Bandung City, integrating multiple datasets for policy monitoring.</li>
+                                    <li>Produced data quality reports and stakeholder feedback loops for early-stage Open Data Initiative.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong><i class="bi bi-patch-check-fill"></i> <a href="https://credsverse.com/credentials/6b2d9610-5bc2-4563-9d82-269949a20807?preview=1" target="_blank">Certified Design Thinking Public Policy Enabler</a></strong></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Issued by: Design Thinking Academy Indonesia</h6>
-                            <p class="card-text">Equips professionals with practical skills to apply human-centered design methods for policy innovation and problem-solving in government or development settings.</p>
-                            <p class="card-text"><small class="text-muted">Valid Until: January 2027</small></p>
+            </div>
+        </section>
+
+        <!-- Project Experience Section -->
+        <section id="projects" class="py-5">
+            <div class="container py-5">
+                <h2 class="text-center section-title">Project Experience</h2>
+                <div class="accordion" id="projectAccordion">
+                    
+                    <!-- Project 1 -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingProjectOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectOne" aria-expanded="true" aria-controls="collapseProjectOne">
+                                East Java Spatial Data Management System
+                            </button>
+                        </h2>
+                        <div id="collapseProjectOne" class="accordion-collapse collapse show" aria-labelledby="headingProjectOne" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p><strong>Role:</strong> Project Manager</p>
+                                        <p><strong>Date:</strong> Feb - July 2025</p>
+                                        <p><strong>Client:</strong> East Java Provincial Government</p>
+                                        <p>Led the end-to-end implementation of a provincial-scale spatial data management system. This initiative established a central Spatial Data Portal, integrating diverse geospatial datasets from various government agencies. The project enhanced interagency coordination for strategic planning, resource management, and public service delivery. A key achievement was ensuring full compliance with national standards like JIGN (National Spatial Data Infrastructure) and the One Map Policy, setting a benchmark for other provinces.</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <img src="https://satupeta.jatimprov.go.id/logo.svg" class="img-fluid rounded" alt="One MapEast Java">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingProjectTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectTwo" aria-expanded="false" aria-controls="collapseProjectTwo">
+                                Cimahi Motekar Awards 2025
+                            </button>
+                        </h2>
+                        <div id="collapseProjectTwo" class="accordion-collapse collapse" aria-labelledby="headingProjectTwo" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p><strong>Role:</strong> Mentor</p>
+                                        <p><strong>Date:</strong> August - Sept 2025</p>
+                                        <p><strong>Client:</strong> Cimahi City Government</p>
+                                        <p>Served as a mentor in Cimahi’s annual innovation program, supporting local government agencies and community innovators in developing and evaluating public service innovations. Provided strategic guidance on policy evaluation, institutional strengthening, and replication of best practices, contributing to improved public service delivery, stronger innovation culture, and enhanced regional competitiveness and innovation indices.</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <img src="https://piramida.cimahikota.go.id/images/logo-chima-300.png" class="img-fluid rounded" alt="East Java Government">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingProjectThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectThree" aria-expanded="false" aria-controls="collapseProjectThree">
+                                Campus Design Thinking Workshop
+                            </button>
+                        </h2>
+                        <div id="collapseProjectThree" class="accordion-collapse collapse" aria-labelledby="headingProjectThree" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p><strong>Role:</strong> Lead Facilitator & Curriculum Designer</p>
+                                        <p><strong>Date:</strong> Oct - Nov 2023</p>
+                                        <p><strong>Client:</strong> Universitas Muhammadiyah Surakarta</p>
+                                        <p>Designed and facilitated a strategic curriculum to address key institutional challenges in the higher education sector, including competitive positioning, accreditation and ranking, alumni engagement, and student retention. Developed case-based learning modules (e.g., competitive forces, accreditation monitoring, alumni marketability, and retention strategies) to guide university leaders in identifying opportunities, strengthening institutional capacity, and enhancing student experience. Provided facilitation that enabled cross-functional collaboration, actionable insights, and sustainable strategies for improving competitiveness and academic quality.</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <img src="https://feb.ums.ac.id/wp-content/uploads/sites/34/2018/08/UMS-Logo-Resmi.png" class="img-fluid rounded" alt="Universitas Muhammadiyah Surakarta">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingProjectFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectFour" aria-expanded="false" aria-controls="collapseProjectFour">
+                                Project Manager Consultant/Advisor
+                            </button>
+                        </h2>
+                        <div id="collapseProjectFour" class="accordion-collapse collapse" aria-labelledby="headingProjectFour" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p><strong>Role:</strong> Project Manager Consultant/Advisor</p>
+                                        <p><strong>Date:</strong> July - August 2023</p>
+                                        <p><strong>Client:</strong> Undisclosed</p>
+                                        <p>Provided project management advisory for the development of a strategic roadmap on data and open data initiatives in Tangerang Regency. Supported strategic planning, stakeholder alignment, and governance by defining project scope, deliverables, and methodologies (e.g., Design Thinking, Enterprise Architecture). Oversaw study execution, ensured evidence-based analysis, and implemented quality assurance checkpoints. Advised on risk management, technical feasibility, and institutional alignment, while facilitating stakeholder validation of final recommendations to ensure readiness for subsequent digital platform development.</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <img src="https://placehold.co/300x200?text=PM+Consultant/Advisor" class="img-fluid rounded" alt="Undisclosed">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="headingProjectFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjectFive" aria-expanded="false" aria-controls="collapseProjectFive">
+                                Design Thinking Coach
+                            </button>
+                        </h2>
+                        <div id="collapseProjectFive" class="accordion-collapse collapse" aria-labelledby="headingProjectFive" data-bs-parent="#projectAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p><strong>Role:</strong> Design Thinking Coach</p>
+                                        <p><strong>Date:</strong> Sept - Nov 2022</p>
+                                        <p><strong>Client:</strong> Klasa Edu</p>
+                                        <p>As a Coach for the Design Thinking Course at Klasa Edu, I guide students through the process of developing innovative solutions to real-world problems. By providing personalized feedback and facilitating collaborative exercises, I help students to cultivate a deep understanding of the design thinking methodology and its practical applications. Through my work, I have seen students develop a newfound sense of confidence in their ability to create meaningful change in their communities and beyond.</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <img src="https://klasaedu.com/wp-content/uploads/2023/01/cropped-3-2-1.png" class="img-fluid rounded" alt="Klasa Edu">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education & Certifications -->
+        <section id="education" class="py-5">
+            <div class="container py-5">
+                <h2 class="text-center section-title">Education & Certifications</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title">Education</h5>
+                                <p class="fw-bold mb-1">Informatics Engineering (S.Kom)</p>
+                                <p class="text-muted">Universitas Komputer Indonesia, Bandung (Class of 2011)</p>
+                                <p class="fw-bold mb-1">Development Studies (MSP)</p>
+                                <p class="text-muted">Institut Teknologi Bandung, Bandung (Class of 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title">Professional Certifications</h5>
+                                <p class="mb-2"><i class="fa-solid fa-certificate me-2" style="color:var(--primary-color)"></i><strong><a href="https://eu.credential.net/dd42922b-e6c0-4452-8a85-81bcc7fed8f2" target="_blank">Certified Data Management Professional (CDMP)</a></strong> - DAMA International</p>
+                                <p><i class="fa-solid fa-certificate me-2" style="color:var(--primary-color)"></i><strong><a href="https://credsverse.com/credentials/6b2d9610-5bc2-4563-9d82-269949a20807?preview=1" target="_blank">Certified Design Thinking Public Policy Enabler</a></strong> - Design Thinking Academy Indonesia</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -437,88 +623,66 @@
         </section>
         
         <!-- Contact Section -->
-        <section id="contact" class="my-5 text-center">
-            <hr>
-             <h2 class="section-title">Get In Touch</h2>
-             <p>Feel free to reach out for collaborations or just a friendly chat.</p>
-             <a href="mailto:tryfatur@gmail.com" class="btn btn-primary btn-lg mx-2"><i class="bi bi-envelope-fill"></i> Email Me</a>
-             <a href="https://linkedin.com/in/tryfatur" target="_blank" class="btn btn-secondary btn-lg mx-2"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        <section id="contact" class="py-5">
+            <div class="container py-5 text-center">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="lead mb-4">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an impactful initiative.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="mailto:tryfatur@gmail.com" class="btn btn-primary btn-lg" style="background-color: var(--primary-color); border-color: var(--primary-color);"><i class="fa-solid fa-envelope me-2"></i>Email Me</a>
+                    <a href="https://linkedin.com/in/tryfatur" target="_blank" class="btn btn-outline-primary btn-lg"><i class="fa-brands fa-linkedin me-2"></i>LinkedIn</a>
+                </div>
+            </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-body-tertiary text-center py-4">
-        <div class="container">
-            <p class="mb-0">&copy; <span id="current-year"></span> Try Fathur Rachman. All Rights Reserved.</p>
-            <p class="mb-0">
-                <i class="bi bi-geo-alt-fill"></i> Bandung, Indonesia
-            </p>
+    <footer class="py-4" style="background-color: var(--darkest-blue); color: var(--white);">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Try Fathur Rachman. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- Theme Toggle Script -->
     <script>
-        // JavaScript for Theme Toggler and other functionalities
+        const themeToggler = document.getElementById('theme-toggler');
+        const htmlElement = document.documentElement;
+        const themeIcon = themeToggler.querySelector('i');
+
+        // Function to set theme
+        const setTheme = (theme) => {
+            htmlElement.setAttribute('data-bs-theme', theme);
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+            localStorage.setItem('theme', theme);
+        };
+
+        // Event listener for the toggle button
+        themeToggler.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        // Check for saved theme in localStorage or user's preference
         document.addEventListener('DOMContentLoaded', () => {
-            const themeToggler = document.getElementById('theme-toggler');
-            const htmlElement = document.documentElement;
-            const moonIcon = 'bi-moon-stars-fill';
-            const sunIcon = 'bi-sun-fill';
-
-            // Function to set theme
-            const setTheme = (theme) => {
-                htmlElement.setAttribute('data-bs-theme', theme);
-                const icon = theme === 'dark' ? sunIcon : moonIcon;
-                themeToggler.querySelector('i').className = `bi ${icon}`;
-            };
-
-            // Check for saved theme in localStorage
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
-
-            // Theme toggler event listener
-            themeToggler.addEventListener('click', () => {
-                const currentTheme = htmlElement.getAttribute('data-bs-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                setTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            // Set current year in footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    // Check if href is more than just a '#' to prevent errors
-                    if (href && href.length > 1) {
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-
-            // Experience toggle button text change
-            const experienceToggleButton = document.getElementById('experience-toggle-btn');
-            const collapsibleItems = document.querySelectorAll('.more-experience-items');
-            
-            if(experienceToggleButton && collapsibleItems.length > 0) {
-                // We listen to the event on the first item, which is enough to update the button
-                collapsibleItems[0].addEventListener('show.bs.collapse', () => {
-                    experienceToggleButton.innerHTML = '<i class="bi bi-arrow-up-square"></i> Show Less';
-                });
-                collapsibleItems[0].addEventListener('hide.bs.collapse', () => {
-                    experienceToggleButton.innerHTML = '<i class="bi bi-arrow-down-square"></i> Show More';
-                });
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (prefersDark) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
             }
         });
     </script>
