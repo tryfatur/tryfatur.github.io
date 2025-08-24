@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B75F0ZHYC9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B75F0ZHYC9');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Strategy Check</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-card: #374151;
+            --bg-question-card: #27272a;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --border-color: #4b5563;
+            --accent-color: #3b82f6;
+            --gradient-start: #1e3a8a;
+            --gradient-end: #3b82f6;
+        }
+
+        .light-mode {
+            --bg-primary: #f9fafb;
+            --bg-secondary: #ffffff;
+            --bg-card: #f3f4f6;
+            --bg-question-card: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #374151;
+            --border-color: #e5e7eb;
+            --accent-color: #3b82f6;
+            --gradient-start: #1e3a8a;
+            --gradient-end: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+        }
+        
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .question-card {
+            background-color: var(--bg-question-card);
+            border-left: 4px solid var(--accent-color);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .likert-scale label {
+            transition: all 0.2s ease-in-out;
+            background-color: var(--bg-card);
+        }
+        
+        .likert-scale input[type="radio"]:checked + label {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .likert-scale input[type="radio"] {
+            display: none;
+        }
+
+        .bg-secondary { background-color: var(--bg-secondary); }
+        .text-secondary { color: var(--text-secondary); }
+        .border-color { border-color: var(--border-color); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header for Toggles -->
+    <header class="p-4 flex justify-end items-center space-x-4 sticky top-0 z-10" style="background-color: var(--bg-primary);">
+        <!-- Language Switcher -->
+        <div class="flex items-center">
+            <span class="mr-2 text-sm font-medium" data-lang-key="language">Bahasa</span>
+            <select id="language-switcher" class="bg-secondary border border-color text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                <option value="id">Indonesia</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        <!-- Theme Toggle -->
+        <div class="flex items-center">
+            <span class="mr-2 text-sm font-medium" data-lang-key="theme">Tema</span>
+            <label for="theme-toggle" class="inline-flex relative items-center cursor-pointer">
+                <input type="checkbox" value="" id="theme-toggle" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+        </div>
+    </header>
+
+    <div id="app" class="container mx-auto p-4 md:p-8">
+
+        <!-- Halaman 1: Landing Page -->
+        <section id="landing-page" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent gradient-bg" data-lang-key="main_title">Uji Strategi Digital Anda Sekarang !</h1>
+                <p class="text-lg md:text-xl text-secondary mb-8" data-lang-key="main_subtitle">
+                    Cari tahu sejauh mana tingkat kematangan digital organisasi Anda di 7 bidang utama transformasi digital melalui 24 pertanyaan strategis. Dapatkan penilaian awal gratis mengenai postur digital Anda dan temukan peluang untuk roadmap digital Anda.
+                </p>
+                <div class="bg-secondary p-6 rounded-lg border border-color text-left mb-8 space-y-4">
+                    <h2 class="text-2xl font-semibold mb-3 text-center" data-lang-key="check_answers_title">Survey ini akan menjawab:</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span data-lang-key="answer_1">Apakah Anda telah mencakup topik-topik strategis utama dalam strategi/roadmap digital Anda?</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span data-lang-key="answer_2">Seberapa jauh kemajuan Anda dalam transformasi digital?</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span data-lang-key="answer_3">Di mana peluang terbesar untuk pengembangan strategi digital Anda?</span>
+                        </li>
+                    </ul>
+                </div>
+                <button id="start-survey-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105" data-lang-key="start_assessment_btn">
+                    Mulai Penilaian
+                </button>
+                <p class="text-xs text-secondary mt-8 max-w-2xl mx-auto" data-lang-key="disclaimer">
+                    Seluruh informasi (referensi, pertanyaan dan penilaian) didapatkan dari buku <a href="https://the-digital-transformation-canvas.com/" target="_blank">The Digital Transformation Canvas: Develop and implement your digital strategy</a> karya Marc K Peter. Hasil dari penilaian pada website ini tidak bisa serta merta dijadikan referensi karena ada keterlibatan AI dan interpretasi pembuat.
+                </p>
+            </div>
+        </section>
+
+        <!-- Halaman 2: Survey -->
+        <section id="survey-page" class="hidden">
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-8" data-lang-key="survey_title">Formulir Penilaian Strategi Digital</h1>
+            <div id="progress-bar-container" class="w-full bg-gray-700 rounded-full h-2.5 mb-8">
+                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <form id="survey-form" class="space-y-8">
+                <div id="questions-container"></div>
+                <div id="error-message" class="text-red-400 text-center hidden mb-4" data-lang-key="error_message">Harap jawab semua pertanyaan sebelum melanjutkan.</div>
+                <div class="text-center">
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-lang-key="view_results_btn">
+                        Lihat Hasil Analisis
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Halaman 3: Hasil -->
+        <section id="results-page" class="hidden">
+            <div id="results-content" class="bg-secondary p-6 md:p-10 rounded-lg border border-color">
+                <h1 class="text-3xl md:text-4xl font-bold text-center mb-2" data-lang-key="results_title">Hasil Analisis Kematangan Digital</h1>
+                <p class="text-center text-secondary mb-8" data-lang-key="results_subtitle">Berikut adalah ringkasan tingkat kematangan digital organisasi Anda.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+                    <div class="card p-6 rounded-lg">
+                        <h2 class="text-lg font-semibold text-secondary mb-2" data-lang-key="overall_score_title">Skor Rata-rata Keseluruhan</h2>
+                        <p id="overall-score" class="text-5xl font-bold text-blue-400">0.0</p>
+                        <p class="text-secondary" data-lang-key="out_of">dari 6.0</p>
+                    </div>
+                     <div class="card p-6 rounded-lg md:col-span-2">
+                        <h2 class="text-lg font-semibold text-secondary mb-2" data-lang-key="score_interpretation_title">Interpretasi Skor</h2>
+                        <p id="score-interpretation" class="text-secondary"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-lg">
+                         <h2 class="text-xl font-semibold text-center mb-4" data-lang-key="chart_title">Visualisasi Bidang Aksi</h2>
+                        <div class="w-full max-w-lg mx-auto">
+                            <canvas id="results-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h2 class="text-xl font-semibold text-center mb-4" data-lang-key="detailed_scores_title">Skor Rata-rata per Bidang Aksi</h2>
+                        <div id="detailed-scores" class="space-y-4"></div>
+                    </div>
+                    <p class="text-xs text-secondary mt-8 max-w-2xl mx-auto" data-lang-key="disclaimer">
+                        Seluruh informasi (referensi, pertanyaan dan penilaian) didapatkan dari buku The Digital Transformation Canvas: Develop and implement your digital strategy karya Marc K Peter. Hasil dari penilaian pada website ini tidak bisa serta merta dijadikan referensi karena ada keterlibatan AI dan interpretasi pembuat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 space-x-4">
+                <button id="download-pdf-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300" data-lang-key="download_pdf_btn">
+                    Unduh Hasil (PDF)
+                </button>
+                <button id="retake-survey-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300" data-lang-key="retake_survey_btn">
+                    Ulangi Penilaian
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Data Multi-bahasa
+        const langData = {
+             id: {
+                language: "Bahasa",
+                theme: "Tema",
+                main_title: "Uji Strategi Digital Anda Sekarang !",
+                main_subtitle: "Kenali kematangan digital organisasi Anda kurang dari 5 menit. Gratis, mudah, dan bermanfaat untuk roadmap digital Anda.",
+                check_answers_title: "Survey ini akan menjawab:",
+                answer_1: "Apakah Anda telah mencakup topik-topik strategis utama dalam strategi/roadmap digital Anda?",
+                answer_2: "Seberapa jauh kemajuan Anda dalam transformasi digital?",
+                answer_3: "Di mana peluang terbesar untuk pengembangan strategi digital Anda?",
+                start_assessment_btn: "Mulai Penilaian",
+                disclaimer: "Seluruh informasi (referensi, pertanyaan dan penilaian) didapatkan dari buku The Digital Transformation Canvas: Develop and implement your digital strategy karya Marc K Peter. Hasil dari penilaian pada website ini tidak bisa serta merta dijadikan referensi karena ada keterlibatan AI dan interpretasi pembuat.",
+                survey_title: "Formulir Penilaian Strategi Digital",
+                error_message: "Harap jawab semua pertanyaan sebelum melanjutkan.",
+                view_results_btn: "Lihat Hasil Analisis",
+                results_title: "Hasil Analisis Kematangan Digital",
+                results_subtitle: "Berikut adalah ringkasan tingkat kematangan digital organisasi Anda.",
+                overall_score_title: "Skor Rata-rata Keseluruhan",
+                out_of: "dari 6.0",
+                score_interpretation_title: "Interpretasi Skor",
+                chart_title: "Visualisasi Bidang Aksi",
+                detailed_scores_title: "Skor Rata-rata per Bidang Aksi",
+                download_pdf_btn: "Unduh Hasil (PDF)",
+                retake_survey_btn: "Ulangi Penilaian",
+                likert_strongly_disagree: "Sangat Tidak Setuju",
+                likert_strongly_agree: "Sangat Setuju",
+                likert_dont_know: "Tidak Tahu",
+                pdf_disclaimer: "Seluruh informasi (referensi, pertanyaan dan penilaian) didapatkan dari buku The Digital Transformation Canvas karya Marc K Peter. Hasil dari penilaian ini tidak bisa serta merta dijadikan referensi karena ada keterlibatan AI dan interpretasi pembuat.",
+                pdf_exported_on: "Dokumen diekspor pada:"
+            },
+            en: {
+                language: "Language",
+                theme: "Theme",
+                main_title: "Test Your Digital Strategy Now!",
+                main_subtitle: "Assess your organization's digital maturity in less than 5 minutes. It's free, easy, and useful for your digital roadmap.",
+                check_answers_title: "This survey will answer:",
+                answer_1: "Have you covered the key strategic topics in your digital strategy/roadmap?",
+                answer_2: "How far have you progressed with your digital transformation?",
+                answer_3: "Where are the greatest opportunities for your digital strategy development?",
+                start_assessment_btn: "Start Assessment",
+                disclaimer: "All information (references, questions, and scoring) is derived from the book The Digital Transformation Canvas: Develop and implement your digital strategy by Marc K Peter. The results from this website's assessment cannot be solely used as a reference due to the involvement of AI and the creator's interpretation.",
+                survey_title: "Digital Strategy Assessment Form",
+                error_message: "Please answer all questions before proceeding.",
+                view_results_btn: "View Analysis Results",
+                results_title: "Digital Maturity Analysis Results",
+                results_subtitle: "Here is a summary of your organization's digital maturity level.",
+                overall_score_title: "Overall Average Score",
+                out_of: "out of 6.0",
+                score_interpretation_title: "Score Interpretation",
+                chart_title: "Action Field Visualization",
+                detailed_scores_title: "Average Score per Action Field",
+                download_pdf_btn: "Download Results (PDF)",
+                retake_survey_btn: "Retake Assessment",
+                likert_strongly_disagree: "Strongly Disagree",
+                likert_strongly_agree: "Strongly Agree",
+                likert_dont_know: "Don't Know",
+                pdf_disclaimer: "All information (references, questions, and scoring) is derived from the book The Digital Transformation Canvas by Marc K Peter. The results from this assessment cannot be solely used as a reference due to the involvement of AI and the creator's interpretation.",
+                pdf_exported_on: "Document exported on:"
+            }
+        };
+
+        const questionsData = [
+            { id: 0, field: { id: "Berorientasi pada pelanggan", en: "Customer Centricity" }, question: { id: "Apakah organisasi Anda (termasuk karyawan) memahami kebutuhan dan harapan pelanggan, baik saat ini maupun di masa depan?", en: "Does your organization (including employees) understand the needs and expectations of customers, both now and in the future?" }, explanation: { id: "Menanyakan sejauh mana organisasi benar-benar tahu apa yang pelanggan inginkan sekarang dan harapkan di masa depan.", en: "Asks to what extent the organization truly knows what customers want now and expect in the future." } },
+            { id: 1, field: { id: "Berorientasi pada pelanggan", en: "Customer Centricity" }, question: { id: "Apakah organisasi Anda memiliki rencana untuk meningkatkan cara melayani pelanggan, khususnya melalui saluran digital?", en: "Does your organization have a plan to improve how it serves customers, especially through digital channels?" }, explanation: { id: "Menekankan apakah ada strategi untuk membuat layanan pelanggan lebih mudah, nyaman, dan efektif melalui kanal digital.", en: "Emphasizes whether there is a strategy to make customer service easier, more convenient, and effective through digital channels." } },
+            { id: 2, field: { id: "Berorientasi pada pelanggan", en: "Customer Centricity" }, question: { id: "Apakah organisasi Anda memiliki rencana untuk memperkuat hubungan dengan pelanggan, mitra, dan pemasok melalui saluran digital (misalnya website, aplikasi, media sosial)?", en: "Does your organization have a plan to strengthen relationships with customers, partners, and suppliers through digital channels (e.g., website, apps, social media)?" }, explanation: { id: "Menanyakan apakah organisasi punya strategi menjaga dan memperbaiki hubungan dengan pihak penting menggunakan sarana digital.", en: "Asks if the organization has a strategy to maintain and improve relationships with key stakeholders using digital means." } },
+            { id: 3, field: { id: "Berorientasi pada pelanggan", en: "Customer Centricity" }, question: { id: "Apakah organisasi Anda secara rutin mengembangkan dan mencoba ide, produk, atau layanan baru sesuai kebutuhan pelanggan dan perkembangan teknologi?", en: "Does your organization regularly develop and test new ideas, products, or services according to customer needs and technological developments?" }, explanation: { id: "Menekankan apakah organisasi berinovasi dan menguji ide/layanan baru agar tetap relevan dengan kebutuhan pelanggan dan teknologi.", en: "Emphasizes whether the organization innovates and tests new ideas/services to stay relevant to customer and technology needs." } },
+            { id: 4, field: { id: "Teknologi Baru", en: "New Technologies" }, question: { id: "Apakah organisasi Anda secara rutin mengenali tren teknologi penting dan mencoba menerapkannya?", en: "Does your organization regularly identify important technology trends and try to implement them?" }, explanation: { id: "Menanyakan apakah organisasi aktif mengikuti perkembangan teknologi baru (misalnya Al, cloud, loT) dan mencoba menggunakannya.", en: "Asks if the organization actively follows new technology developments (e.g., AI, cloud, IoT) and tries to use them." } },
+            { id: 5, field: { id: "Teknologi Baru", en: "New Technologies" }, question: { id: "Apakah organisasi Anda menggunakan teknologi komunikasi yang mendukung kerja lebih cepat dan efektif?", en: "Does your organization use communication technology that supports faster and more effective work?" }, explanation: { id: "Fokus pada pemanfaatan alat komunikasi digital (email, chat, video conference, platform kolaborasi) yang membantu pekerjaan.", en: "Focuses on the use of digital communication tools (email, chat, video conference, collaboration platforms) that aid work." } },
+            { id: 6, field: { id: "Teknologi Baru", en: "New Technologies" }, question: { id: "Apakah organisasi Anda sudah memiliki aturan dan langkah-langkah untuk menjaga keamanan IT dan data?", en: "Does your organization already have rules and measures in place to ensure IT and data security?" }, explanation: { id: "Menanyakan apakah organisasi sudah menetapkan dan menjalankan kebijakan atau praktik keamanan (password, enkripsi, firewall, backup, audit).", en: "Asks if the organization has established and implemented security policies or practices (passwords, encryption, firewalls, backups, audits)." } },
+            { id: 7, field: { id: "Data dan Cloud", en: "Data and Cloud" }, question: { id: "Apakah organisasi Anda sudah menggunakan data yang dimiliki untuk mendukung keputusan penting dan memberikan manfaat nyata?", en: "Does your organization already use its data to support important decisions and provide tangible benefits?" }, explanation: { id: "Menanyakan apakah data (pelanggan, produk, proyek, kampanye) benar-benar digunakan untuk analisis & keputusan, bukan hanya disimpan.", en: "Asks if data (customer, product, project, campaign) is actually used for analysis & decision-making, not just stored." } },
+            { id: 8, field: { id: "Data dan Cloud", en: "Data and Cloud" }, question: { id: "Apakah data di organisasi Anda cukup akurat, lengkap, dan teratur sehingga bisa dipakai untuk bekerja lebih efisien atau mengotomatisasi proses?", en: "Is the data in your organization accurate, complete, and organized enough to be used for more efficient work or process automation?" }, explanation: { id: "Menekankan pentingnya kualitas data agar proses kerja bisa cepat dan otomatis.", en: "Emphasizes the importance of data quality for fast and automated work processes." } },
+            { id: 9, field: { id: "Data dan Cloud", en: "Data and Cloud" }, question: { id: "Apakah data di organisasi Anda mudah diakses (secara aman) oleh orang yang membutuhkan, kapan pun dan di mana pun, untuk mendukung pekerjaan?", en: "Is data in your organization easily accessible (securely) to those who need it, anytime and anywhere, to support their work?" }, explanation: { id: "Menanyakan apakah organisasi sudah menggunakan sistem (misalnya cloud) agar data bisa diakses cepat dan aman.", en: "Asks if the organization uses systems (e.g., cloud) to make data quickly and securely accessible." } },
+            { id: 10, field: { id: "Strategi dan model bisnis baru", en: "New Strategy and Business Models" }, question: { id: "Apakah organisasi Anda memiliki analisis pasar terbaru untuk mendukung strategi dan pengembangan layanan/produk?", en: "Does your organization have up-to-date market analysis to support its strategy and service/product development?" }, explanation: { id: "Menanyakan apakah organisasi rutin memantau kondisi pasar, pesaing, pelanggan, lalu memakai informasi itu untuk strategi.", en: "Asks if the organization regularly monitors market conditions, competitors, customers, and then uses that information for strategy." } },
+            { id: 11, field: { id: "Strategi dan model bisnis baru", en: "New Strategy and Business Models" }, question: { id: "Apakah organisasi Anda memanfaatkan keunggulan utama (kemampuan inti) dalam bisnis untuk berkembang di ruang digital?", en: "Does your organization leverage its core competencies in the business to grow in the digital space?" }, explanation: { id: "Menanyakan apakah organisasi tahu keunggulan utamanya (misalnya keahlian unik) dan menggunakannya di dunia digital.", en: "Asks if the organization knows its key strengths (e.g., unique expertise) and uses them in the digital world." } },
+            { id: 12, field: { id: "Strategi dan model bisnis baru", en: "New Strategy and Business Models" }, question: { id: "Apakah cara organisasi Anda menjalankan usaha dan menetapkan harga sudah sesuai untuk bersaing di era digital?", en: "Are your organization's business operations and pricing models suitable for competing in the digital era?" }, explanation: { id: "Menanyakan apakah model bisnis dan harga sudah diperbarui agar relevan dengan pasar digital (misalnya model langganan, transaksi online).", en: "Asks if the business model and pricing have been updated to be relevant to the digital market (e.g., subscription models, online transactions)." } },
+            { id: 13, field: { id: "Strategi dan model bisnis baru", en: "New Strategy and Business Models" }, question: { id: "Apakah cara organisasi Anda menempatkan diri dibanding pesaing masih tepat dan relevan untuk era digital?", en: "Is your organization's positioning against competitors still appropriate and relevant for the digital era?" }, explanation: { id: "Menanyakan apakah organisasi sudah meninjau keunggulan dan diferensiasinya agar tetap menarik bagi pelanggan digital.", en: "Asks if the organization has reviewed its advantages and differentiators to remain attractive to digital customers." } },
+            { id: 14, field: { id: "Strategi dan model bisnis baru", en: "New Strategy and Business Models" }, question: { id: "Apakah organisasi Anda sudah diatur sedemikian rupa sehingga mampu mengenali dan merespons perubahan pasar secara terus-menerus?", en: "Is your organization structured in a way that it can continuously recognize and respond to market changes?" }, explanation: { id: "Menekankan apakah organisasi cukup fleksibel dan komunikasinya berjalan baik sehingga semua level bisa menyesuaikan diri.", en: "Emphasizes whether the organization is flexible enough and its communication flows well so that all levels can adapt." } },
+            { id: 15, field: { id: "Manajemen Proses", en: "Process Management" }, question: { id: "Apakah organisasi Anda sudah meninjau dan memperbaiki proses kerja sebelum didigitalisasi?", en: "Has your organization reviewed and improved its work processes before digitalization?" }, explanation: { id: "Menekankan pentingnya memperbaiki proses lama agar digitalisasi memberi manfaat nyata.", en: "Emphasizes the importance of improving old processes so that digitalization provides real benefits." } },
+            { id: 16, field: { id: "Manajemen Proses", en: "Process Management" }, question: { id: "Apakah organisasi Anda sudah menemukan dan menerapkan otomatisasi proses kerja untuk menghemat waktu dan biaya?", en: "Has your organization identified and implemented work process automation to save time and costs?" }, explanation: { id: "Menanyakan apakah organisasi memanfaatkan teknologi untuk otomatisasi pekerjaan rutin.", en: "Asks if the organization uses technology to automate routine tasks." } },
+            { id: 17, field: { id: "Manajemen Proses", en: "Process Management" }, question: { id: "Apakah organisasi Anda menggunakan teknologi untuk bekerja lebih cepat serta mengukur kualitas produk/layanan dan kepuasan pelanggan?", en: "Does your organization use technology to work faster and to measure product/service quality and customer satisfaction?" }, explanation: { id: "Menekankan penggunaan teknologi untuk meningkatkan kelincahan, memantau kualitas, dan mengukur kepuasan pelanggan/pegawai.", en: "Emphasizes the use of technology to increase agility, monitor quality, and measure customer/employee satisfaction." } },
+            { id: 18, field: { id: "Kepemimpinan dan budaya digital", en: "Leadership and Digital Culture" }, question: { id: "Apakah organisasi Anda menyediakan lingkungan kerja yang modern, dengan kepemimpinan yang baik, peralatan memadai, dan pengaturan kerja yang fleksibel?", en: "Does your organization provide a modern work environment with good leadership, adequate equipment, and flexible work arrangements?" }, explanation: { id: "Menanyakan apakah organisasi memberi dukungan nyata bagi karyawan (fasilitas, teknologi, kepemimpinan, fleksibilitas).", en: "Asks if the organization provides tangible support for employees (facilities, technology, leadership, flexibility)." } },
+            { id: 19, field: { id: "Kepemimpinan dan budaya digital", en: "Leadership and Digital Culture" }, question: { id: "Apakah semua karyawan di organisasi Anda memiliki pemahaman yang sama tentang arti dan tujuan transformasi digital?", en: "Do all employees in your organization have a common understanding of the meaning and purpose of digital transformation?" }, explanation: { id: "Menekankan apakah strategi digital dipahami dengan jelas oleh seluruh karyawan.", en: "Emphasizes whether the digital strategy is clearly understood by all employees." } },
+            { id: 20, field: { id: "Kepemimpinan dan budaya digital", en: "Leadership and Digital Culture" }, question: { id: "Apakah organisasi Anda memiliki proses atau rencana perubahan untuk mendukung penerapan transformasi digital dan cara kerja baru?", en: "Does your organization have a change process or plan to support the implementation of digital transformation and new ways of working?" }, explanation: { id: "Menanyakan apakah organisasi mendampingi perubahan digital dengan manajemen perubahan yang terstruktur.", en: "Asks if the organization accompanies digital change with structured change management." } },
+            { id: 21, field: { id: "Kepemimpinan dan budaya digital", en: "Leadership and Digital Culture" }, question: { id: "Apakah organisasi Anda mengetahui keterampilan digital yang dibutuhkan dan melatih karyawan agar memiliki kemampuan tersebut?", en: "Does your organization know the required digital skills and train employees to have them?" }, explanation: { id: "Menekankan apakah organisasi memahami keterampilan digital yang relevan dan memberi pelatihan agar karyawan siap.", en: "Emphasizes whether the organization understands relevant digital skills and provides training to prepare employees." } },
+            { id: 22, field: { id: "Digital marketing", en: "Digital Marketing" }, question: { id: "Apakah organisasi Anda menggunakan saluran digital yang tepat (misalnya website, e-commerce, media sosial, atau newsletter) untuk menjangkau pelanggan?", en: "Does your organization use the right digital channels (e.g., website, e-commerce, social media, or newsletter) to reach customers?" }, explanation: { id: "Menanyakan apakah organisasi secara aktif memilih dan menggunakan saluran digital relevan untuk menjangkau, berkomunikasi, dan menjual ke pelanggan.", en: "Asks if the organization actively selects and uses relevant digital channels to reach, communicate with, and sell to customers." } },
+            { id: 23, field: { id: "Digital marketing", en: "Digital Marketing" }, question: { id: "Apakah organisasi Anda memiliki rencana untuk membangun dan memanfaatkan komunitas online (misalnya pelanggan, pengikut media sosial, atau pengguna website)?", en: "Does your organization have a plan to build and leverage online communities (e.g., customers, social media followers, or website users)?" }, explanation: { id: "Menanyakan apakah organisasi berupaya membangun komunitas online yang aktif berinteraksi, sehingga meningkatkan kedekatan dengan pelanggan, memperkuat citra, dan menarik pelanggan baru.", en: "Asks if the organization strives to build an active online community, thereby increasing customer intimacy, strengthening its image, and attracting new customers." } },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Element Selectors
+            const landingPage = document.getElementById('landing-page');
+            const surveyPage = document.getElementById('survey-page');
+            const resultsPage = document.getElementById('results-page');
+            const startSurveyBtn = document.getElementById('start-survey-btn');
+            const surveyForm = document.getElementById('survey-form');
+            const retakeSurveyBtn = document.getElementById('retake-survey-btn');
+            const downloadPdfBtn = document.getElementById('download-pdf-btn');
+            const questionsContainer = document.getElementById('questions-container');
+            const errorMessage = document.getElementById('error-message');
+            const progressBar = document.getElementById('progress-bar');
+            const themeToggle = document.getElementById('theme-toggle');
+            const languageSwitcher = document.getElementById('language-switcher');
+
+            let chartInstance = null;
+            let currentLang = localStorage.getItem('language') || 'id';
+
+            // --- Core Functions ---
+            const showPage = (page) => {
+                landingPage.classList.add('hidden');
+                surveyPage.classList.add('hidden');
+                resultsPage.classList.add('hidden');
+                page.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            };
+            
+            const setLanguage = (lang) => {
+                currentLang = lang;
+                localStorage.setItem('language', lang);
+                languageSwitcher.value = lang;
+                document.documentElement.lang = lang;
+
+                document.querySelectorAll('[data-lang-key]').forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if (langData[lang][key]) {
+                        el.textContent = langData[lang][key];
+                    }
+                });
+                renderQuestions(); // Re-render questions with the new language
+                updateProgressBar(); // Keep progress bar updated
+            };
+
+            const renderQuestions = () => {
+                questionsContainer.innerHTML = ''; // Clear existing questions
+                let currentField = "";
+                questionsData.forEach((q, index) => {
+                    const fieldText = q.field[currentLang];
+                    if (fieldText !== currentField) {
+                        currentField = fieldText;
+                        const fieldTitle = document.createElement('h2');
+                        fieldTitle.className = "text-2xl font-semibold mt-8 mb-4 pb-2 border-b-2 border-color";
+                        fieldTitle.textContent = currentField;
+                        questionsContainer.appendChild(fieldTitle);
+                    }
+
+                    const questionEl = document.createElement('div');
+                    questionEl.className = 'question-card p-6 rounded-lg mb-6';
+                    questionEl.innerHTML = `
+                        <p class="text-lg font-semibold mb-2">${index + 1}. ${q.question[currentLang]}</p>
+                        <p class="text-sm text-secondary mb-4">${q.explanation[currentLang]}</p>
+                        <div class="flex flex-wrap gap-2 items-center likert-scale">
+                            <span class="text-sm mr-2">${langData[currentLang].likert_strongly_disagree}</span>
+                            ${[1, 2, 3, 4, 5, 6].map(val => `
+                                <div>
+                                    <input type="radio" id="q${index}_${val}" name="q${index}" value="${val}" required>
+                                    <label for="q${index}_${val}" class="cursor-pointer w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-500">${val}</label>
+                                </div>
+                            `).join('')}
+                             <span class="text-sm ml-2">${langData[currentLang].likert_strongly_agree}</span>
+                            <div class="ml-auto">
+                                <input type="radio" id="q${index}_0" name="q${index}" value="0">
+                                <label for="q${index}_0" class="cursor-pointer py-2 px-4 rounded-full hover:bg-gray-600 text-sm">${langData[currentLang].likert_dont_know}</label>
+                            </div>
+                        </div>
+                    `;
+                    questionsContainer.appendChild(questionEl);
+                });
+
+                const radioButtons = document.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', updateProgressBar);
+                });
+            };
+            
+            const updateProgressBar = () => {
+                const totalQuestions = questionsData.length;
+                const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
+                const progress = (answeredQuestions / totalQuestions) * 100;
+                progressBar.style.width = `${progress}%`;
+            };
+
+            const displayResults = (answers) => {
+                const scores = answers.map(a => parseInt(a));
+                const totalScore = scores.reduce((sum, score) => sum + score, 0);
+                const overallAverage = totalScore / scores.length;
+
+                document.getElementById('overall-score').textContent = overallAverage.toFixed(1);
+                
+                const interpretationEl = document.getElementById('score-interpretation');
+                let interpretationKey = '';
+                if (overallAverage < 2.0) interpretationKey = 'interpretation_early';
+                else if (overallAverage < 4.0) interpretationKey = 'interpretation_developing';
+                else if (overallAverage < 5.5) interpretationKey = 'interpretation_mature';
+                else interpretationKey = 'interpretation_leading';
+                
+                const interpretations = {
+                    id: {
+                        interpretation_early: "Tahap Awal: Organisasi Anda baru memulai perjalanan transformasi digital. Banyak area fundamental yang perlu dibangun dan diperkuat.",
+                        interpretation_developing: "Tahap Pengembangan: Organisasi Anda telah memiliki beberapa inisiatif digital, namun masih perlu integrasi dan strategi yang lebih kohesif.",
+                        interpretation_mature: "Tahap Matang: Organisasi Anda sudah maju dalam adopsi digital. Fokus selanjutnya adalah optimalisasi dan inovasi berkelanjutan.",
+                        interpretation_leading: "Tahap Unggul: Organisasi Anda adalah pemimpin digital. Budaya inovasi dan kelincahan sudah tertanam kuat dalam DNA perusahaan."
+                    },
+                    en: {
+                        interpretation_early: "Early Stage: Your organization is just beginning its digital transformation journey. Many fundamental areas need to be built and strengthened.",
+                        interpretation_developing: "Developing Stage: Your organization has some digital initiatives, but still needs more integration and a cohesive strategy.",
+                        interpretation_mature: "Mature Stage: Your organization is advanced in digital adoption. The next focus is on optimization and continuous innovation.",
+                        interpretation_leading: "Leading Stage: Your organization is a digital leader. A culture of innovation and agility is deeply embedded in the company's DNA."
+                    }
+                };
+                interpretationEl.textContent = interpretations[currentLang][interpretationKey];
+
+                const fieldScores = {};
+                questionsData.forEach((q, index) => {
+                    const fieldName = q.field[currentLang];
+                    if (!fieldScores[fieldName]) {
+                        fieldScores[fieldName] = { total: 0, count: 0 };
+                    }
+                    fieldScores[fieldName].total += scores[index];
+                    fieldScores[fieldName].count++;
+                });
+
+                const fieldAverages = {};
+                const detailedScoresContainer = document.getElementById('detailed-scores');
+                detailedScoresContainer.innerHTML = '';
+                
+                Object.keys(fieldScores).forEach(field => {
+                    const avg = fieldScores[field].total / fieldScores[field].count;
+                    fieldAverages[field] = avg;
+                    
+                    const scoreEl = document.createElement('div');
+                    scoreEl.className = 'flex justify-between items-center bg-gray-700 p-3 rounded-md';
+                    if(document.body.classList.contains('light-mode')) {
+                        scoreEl.className = 'flex justify-between items-center bg-gray-200 p-3 rounded-md';
+                    }
+                    scoreEl.innerHTML = `
+                        <span class="font-medium">${field}</span>
+                        <span class="font-bold text-lg text-blue-400">${avg.toFixed(1)}</span>
+                    `;
+                    detailedScoresContainer.appendChild(scoreEl);
+                });
+
+                renderChart(fieldAverages);
+            };
+
+            const renderChart = (fieldAverages) => {
+                const ctx = document.getElementById('results-chart').getContext('2d');
+                const labels = Object.keys(fieldAverages);
+                const data = Object.values(fieldAverages);
+                const isLightMode = document.body.classList.contains('light-mode');
+
+                if (chartInstance) chartInstance.destroy();
+
+                chartInstance = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: currentLang === 'id' ? 'Skor Kematangan Digital' : 'Digital Maturity Score',
+                            data: data,
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                            pointBorderColor: '#fff',
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            r: {
+                                beginAtZero: true, max: 6,
+                                pointLabels: { color: isLightMode ? '#374151' : '#cbd5e1', font: { size: 12 } },
+                                grid: { color: isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.2)' },
+                                angleLines: { color: isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.2)' },
+                                ticks: { backdropColor: 'rgba(0,0,0,0)', color: isLightMode ? '#6b7280' : '#9ca3af' }
+                            }
+                        },
+                        plugins: { legend: { labels: { color: isLightMode ? '#111827' : '#e5e7eb' } } }
+                    }
+                });
+            };
+
+            // --- Event Listeners ---
+            startSurveyBtn.addEventListener('click', () => showPage(surveyPage));
+
+            surveyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(surveyForm);
+                const answers = [];
+                let allAnswered = true;
+                for (let i = 0; i < questionsData.length; i++) {
+                    const answer = formData.get(`q${i}`);
+                    if (answer === null) {
+                        allAnswered = false;
+                        break;
+                    }
+                    answers.push(answer);
+                }
+
+                if (allAnswered) {
+                    errorMessage.classList.add('hidden');
+                    displayResults(answers);
+                    showPage(resultsPage);
+                } else {
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+
+            retakeSurveyBtn.addEventListener('click', () => {
+                surveyForm.reset();
+                updateProgressBar();
+                errorMessage.classList.add('hidden');
+                showPage(landingPage);
+            });
+            
+            downloadPdfBtn.addEventListener('click', () => {
+                const { jsPDF } = window.jspdf;
+                const resultsContent = document.getElementById('results-content');
+                const isLightMode = document.body.classList.contains('light-mode');
+                
+                downloadPdfBtn.textContent = 'Processing...';
+                downloadPdfBtn.disabled = true;
+
+                html2canvas(resultsContent, { 
+                    backgroundColor: isLightMode ? '#ffffff' : '#1f2937', 
+                    scale: 2 
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+                    
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    const imgWidth = pdfWidth;
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+                    
+                    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                    // Add footer with disclaimer and timestamp
+                    const now = new Date();
+                    const timestamp = `${now.toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' })} ${now.toLocaleTimeString(currentLang === 'id' ? 'id-ID' : 'en-US')}`;
+                    const disclaimerText = langData[currentLang].pdf_disclaimer;
+                    const exportedOnText = `${langData[currentLang].pdf_exported_on} ${timestamp}`;
+                    
+                    pdf.setFontSize(8);
+                    pdf.setTextColor(150);
+                    
+                    const disclaimerLines = pdf.splitTextToSize(disclaimerText, pdfWidth - 20);
+                    pdf.text(disclaimerLines, 10, pdfHeight - 20);
+                    pdf.text(exportedOnText, 10, pdfHeight - 10);
+
+                    pdf.save('Hasil-Digital-Strategy-Check.pdf');
+                    downloadPdfBtn.textContent = langData[currentLang].download_pdf_btn;
+                    downloadPdfBtn.disabled = false;
+                }).catch(err => {
+                    console.error("Error generating PDF:", err);
+                    downloadPdfBtn.disabled = false;
+                });
+            });
+
+            themeToggle.addEventListener('change', () => {
+                document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+                // Re-render chart if on results page to update colors
+                if (!resultsPage.classList.contains('hidden')) {
+                     const formData = new FormData(surveyForm);
+                     const answers = Array.from({length: questionsData.length}, (_, i) => formData.get(`q${i}`));
+                     if (answers.every(a => a !== null)) displayResults(answers);
+                }
+            });
+
+            languageSwitcher.addEventListener('change', (e) => {
+                setLanguage(e.target.value);
+            });
+            
+            // --- Initialization ---
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                themeToggle.checked = true;
+            }
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
